@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリスタルコンフリクトチーム【Doe】公式サイト</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* スムーズスクロールの追加 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 1. 基本設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            padding: 0;
+            margin: 0;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            background-color: #1c1c1c;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+        }
+
+        /* 2. タイトルと見出し */
+        #header-logo {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 5px solid #e50000;
+            margin-bottom: 0; 
+        }
+        
+        .nav-start-point, .nav-placeholder {
+            display: none; 
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #f0f0f0;
+            border-left: 8px solid #e50000;
+            padding-left: 15px;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            color: #e50000;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-top: 40px;
+            font-weight: 700;
+        }
+
+        /* ------------------------------------------- */
+        /* ⭐️ position: sticky による固定 ⭐️ */
+        /* ------------------------------------------- */
+        nav {
+            background-color: #222;
+            padding: 10px 0;
+            margin-top: 50px; 
+            margin-bottom: 50px; 
+            border-bottom: 1px solid #333;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            
+            position: sticky;
+            top: 0; 
+        }
+
+        nav .nav-wrapper {
+            max-width: 1000px; 
+            margin: 0 auto;
+            padding: 0 40px; 
+        }
+        /* ------------------------------------------- */
+
+
+        /* ナビゲーションリストのスタイル */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9em;
+            padding: 5px 0;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        nav ul li a:hover {
+            color: #e50000;
+            border-bottom: 2px solid #e50000;
+        }
+
+
+        /* 3. コンセプト */
+        #concept {
+            padding: 20px 0;
+            text-align: center;
+        }
+        .concept-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .concept-text strong {
+            font-size: 1.5em;
+            color: #ffcc00; 
+            display: block;
+            margin: 15px 0;
+            letter-spacing: 1px;
+            font-weight: 900;
+        }
+
+        /* 4. リンクボタン */
+        a {
+            color: #e50000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #ffcc00;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #e50000;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px #d4a700;
+        }
+        .button-link:hover {
+            background-color: #ff3333;
+            box-shadow: 0 2px #b00000;
+            transform: translateY(2px);
+        }
+        
+        /* 5. テーブル（戦績）のスタイル */
+        table {
+            width: 100%; 
+            border-collapse: collapse;
+            margin-top: 20px; 
+        }
+        
+        /* ⭐️ 列幅の調整 ⭐️ */
+        #records table th:first-child,
+        #records table td:first-child {
+            width: 70%; /* 大会名に70%の幅を割り当て */
+        }
+        #records table th:last-child,
+        #records table td:last-child {
+            width: 30%; /* 結果に30%の幅を割り当て */
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 15px 10px;
+            text-align: center; 
+        }
+        th {
+            background-color: #333;
+            color: #f0f0f0;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+        tr:nth-child(odd) {
+            background-color: #1c1c1c;
+        }
+        td strong {
+            color: #e50000;
+        }
+        .notes {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* メンバーのアコーディオン（プルダウン）スタイル */
+        #member ul {
+            list-style: none;
+            padding: 0;
+        }
+        #member li {
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            background-color: #222;
+        }
+
+        /* プレイヤー名（summary）のスタイル */
+        #member summary {
+            padding: 15px;
+            background-color: #333;
+            color: #f0f0f0;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+        #member summary:hover {
+            background-color: #444;
+        }
+        #member details[open] summary {
+            background-color: #e50000; 
+            color: #fff;
+        }
+        #member summary strong {
+            color: #ffcc00;
+            margin-right: 5px;
+        }
+
+        /* 詳細コンテンツのスタイル */
+        #member .member-detail {
+            padding: 15px;
+            border-top: 1px solid #333;
+            line-height: 1.6;
+            background-color: #1c1c1c;
+        }
+        
+        /* 画像と紹介文のコンテナスタイル */
+        #member .member-summary-content {
+            display: flex; 
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #333;
+        }
+
+        #member .member-photo {
+            width: 120px; 
+            height: 120px; 
+            margin-right: 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid #e50000;
+            flex-shrink: 0; 
+        }
+
+        #member .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        
+        #member .introduction {
+            margin: 0;
+            padding-top: 5px;
+            font-size: 1.0em;
+            color: #ddd;
+        }
+
+        #member .detail-item {
+            margin-bottom: 10px;
+        }
+        #member .detail-label {
+            color: #e50000;
+            font-weight: 700;
+            display: inline-block;
+            min-width: 100px;
+        }
+        #member .detail-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #ffcc00;
+        }
+
+        /* 6. 予約フォームのテーブルを中央寄せに */
+        #contact table {
+            width: 85%;
+            margin: 20px auto;
+        }
+        #contact th {
+            width: 35%;
+            color: #e50000;
+            background-color: #1c1c1c;
+            border-right: none;
+        }
+        #contact td {
+            border-left: none;
+        }
+
+        /* 7. フッター */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+
+
+        /* ======================================= */
+        /* スクロールアニメーション用CSS */
+        /* ======================================= */
+        /* 初期状態: 非表示・下に移動 */
+        .js-fade-target {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        /* 表示状態: 画面内に入ったら適用 */
+        .js-fade-target.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* アニメーションの遅延 */
+        section:nth-child(1).js-fade-target { transition-delay: 0.2s; }
+        section:nth-child(2).js-fade-target { transition-delay: 0.4s; }
+        section:nth-child(3).js-fade-target { transition-delay: 0.6s; }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id="header-logo">
+                <img src="./images/doe_team.png" alt="クリスタルコンフリクトチーム【Doe】ロゴ" style="width: 100%; height: auto; display: block; max-width: 600px; margin: 0 auto; padding-top: 50px;">
+            </div>
+        </header>
+
+        <nav id="main-nav">
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="#concept">CONCEPT</a></li>
+                    <li><a href="#records">RECORDS</a></li>
+                    <li><a href="#member">MEMBER</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <main>
+            
+            <section id="concept" class="js-fade-target">
+                <h2>CONCEPT - コンセプト</h2>
+                <div class="concept-text">
+                    <p><strong>"Discover our evolution. 我々の進化を見つけて。"</strong></p>
+                    <p>クリスタルコンフリクトにおける絶え間ない試行と挑戦を通じて、チームとしての進化を追求します。次の勝利を目指し、常に成長し続ける「Doe」にご期待ください。</p>
+                </div>
+                <p style="text-align: center;">
+                    <a href="https://jp.finalfantasyxiv.com/lodestone/character/49054983/blog/5609543/" target="_blank" class="button-link" style="background-color: #ffcc00; color: #1c1c1c !important; box-shadow: 0 4px #d4a700;">
+                        【チームのロードストーン記事へ】
+                    </a>
+                </p>
+            </section>
+
+            <section id="records" class="js-fade-target">
+                <h2>TEAM RECORDS - チーム戦績</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>大会名</th>
+                            <th>結果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>第1回夕月杯</td><td>初戦敗退</td></tr>
+                        <tr><td>星雲杯</td><td>3回戦辞退</td></tr>
+                        <tr><td>第7回夕月杯</td><td>初戦敗退</td></tr>
+                        <tr><td>星雲杯#2</td><td><strong>7位</strong></td></tr>
+                        <tr><td>SC1</td><td><strong>stage1突破 stage2敗退</strong></td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="member" class="js-fade-target">
+                <h2>MEMBER - メンバー紹介</h2>
+                
+                <ul>
+                    <li>
+                        <details>
+                            <summary><strong>Takky Sevenstar</strong> / たっきー せぶんすたー</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/mahoutsukai_man.png" alt="Takky Sevenstarのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        ぱっぱ
+                                    </p>
+                                </div>
+                                
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> 黒魔道士 / 詩人</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/8689648/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/takky_sevenstar" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> 現在休暇中</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Raise Eins</strong> / らいせ あいんず</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/knight.png" alt="Raise Einsのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        さんきゅーまいないと
+                                    </p>
+                                </div>
+                                
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> タンク全般 / 詩人</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/25693303/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/raise_FF14" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> -</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Haine Balantin</strong> / はいね ばらんてぃん</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/kids_chuunibyou_boy.png" alt="Haine Balantinのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        AIらしい                                    </p>
+                                </div>
+
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> 暗黒騎士 / リーパー / 戦士</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/25261749/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/haine_eo14" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> -</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Kageto Magatsuki</strong> / かげと まがつき</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/animal_tsuchinoko.png" alt="Kageto Magatsukiのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        世紀末蛇王                                    </p>
+                                </div>
+
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> ヴァイパー / 召喚士</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/36052369/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/Kageto_FFXIV" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> -</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Bulugan Matagi</strong> / ぶるがん またぎ</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/kenjutsu_shinsengumi_woman.png" alt="Bulugan Matagiのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        たまに剣豪.exe                                    </p>
+                                </div>
+                                
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> 侍 / リーパー</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/29333010/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/G_matagi_B6" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> <span>(Twitchの代用)</span></div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Yunaneko Supira</strong> / ゆなねこ すぴら</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/ieneko.webp" alt="Yunaneko Supiraのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        パゲ
+                                    </p>
+                                </div>
+
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> 白魔道士 / 学者</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/25194794/" target="_blank">Lodestone</a>
+                                        <a href="https://x.com/UnanananaUnagi" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> -</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>Mariustel Eurelt</strong> / Shinshine Rakugyo</summary>
+                            <div class="member-detail">
+                                <div class="member-summary-content">
+                                    <div class="member-photo">
+                                        <img src="./images/fish_beta_betta.png" alt="Mariustel Eureltのプロフィール画像">
+                                    </div>
+                                    <p class="introduction">
+                                        さかな～チンアナゴ～！                                    </p>
+                                </div>
+
+                                <div class="detail-item"><span class="detail-label">ジョブプール:</span> 賢者 / 戦士 / 占星術師</div>
+                                <div class="detail-item"><span class="detail-label">リンク:</span> 
+                                    <span class="detail-links">
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/49054983/" target="_blank">Lodestone (Mariustel)</a>
+                                        <a href="https://jp.finalfantasyxiv.com/lodestone/character/32756687/" target="_blank">Lodestone (Shinshine)</a>
+                                        <a href="https://x.com/Shin_Shineee" target="_blank">X (Twitter)</a>
+                                    </span>
+                                </div>
+                                <div class="detail-item"><span class="detail-label">備考:</span> -</div>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
+                <p class="notes">※各メンバーの過去の個人戦績は上記リンクからご覧ください。</p>
+            </section>
+
+            <section id="contact" class="js-fade-target">
+                <h2>CONTACT / SCHEDULE - お問い合わせ・予約</h2>
+                <p style="text-align: center;">チーム「Doe」への練習試合、合同練習などのお誘いは下記フォームにて受け付けております。</p>
+
+                <h3>練習試合・合同練習 予約フォーム</h3>
+                <table>
+                    <tr><th>項目</th><th>記載内容</th></tr>
+                    <tr><td>**チーム名**</td><td>自由記述</td></tr>
+                    <tr><td>**連絡先**</td><td>連絡先の**Twitter ID**をご記入ください。</td></tr>
+                    <tr><td>**希望日時**</td><td>カレンダー表示からの選択をお願いします。</td></tr>
+                </table>
+
+                <p style="text-align: center; margin-top: 30px;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRiIdGRFbrRYCYRkzOET5CrY5wW3iksw2mUD4v6SAZQsqEHw/viewform?usp=header" class="button-link">【ご予約・お問い合わせはこちらから】</a>
+                </p>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>&copy; Doe Crystalline Conflict Team. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ===========================================
+            // ⭐️ フェードインアニメーション処理 ⭐️
+            // ===========================================
+            
+            const fadeTargets = document.querySelectorAll('.js-fade-target');
+            
+            const fadeObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -20% 0px',
+                threshold: 0
+            });
+
+            fadeTargets.forEach(target => {
+                fadeObserver.observe(target);
+            });
+            
+            if (fadeTargets.length > 0) {
+                setTimeout(() => {
+                    if (fadeTargets[0].getBoundingClientRect().top < window.innerHeight) {
+                        fadeTargets[0].classList.add('is-visible');
+                        fadeObserver.unobserve(fadeTargets[0]);
+                    }
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
